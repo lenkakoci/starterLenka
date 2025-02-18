@@ -8,7 +8,6 @@ export type Props = {
 export const Demo: React.FC<Props> = ({ name }) => {
   return (
     <div className="moje-trida">
-      <h1>Zmena</h1>
       <span className="name"> {name}</span>
     </div>
   );
