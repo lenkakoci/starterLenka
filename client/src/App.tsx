@@ -1,8 +1,8 @@
 import React from "react";
 import { Demo } from "./pages/Demo/Demo";
-import { Event } from "./components/Event/Event";
+import { Event, EventProps } from "./components/Event/Event";
 
-const testData = {
+const testData: EventProps = {
   id: "event-1",
   title: "Výstup na Matterhorn",
   location: "Matterhorn",
@@ -10,22 +10,22 @@ const testData = {
     {
       timestamp: new Date("2025-7-27").getTime(),
       records: [ // toto je pole objektů UserRecord, každý objekt má vlastnosti name a answer
-        { name: "Pavel", answer: "yes" as const }, // as const zařídí, že se nejedná o string ale jednu z předdefinovaných hodnot
-        { name: "Lukáš", answer: "no" as const },
+        { name: "Pavlína", answer: "yes" }, // as const zařídí, že se nejedná o string ale jednu z předdefinovaných hodnot
+        { name: "Lukáš", answer: "no" },
       ],
     },
     {
       timestamp: new Date("2025-7-28").getTime(),
       records: [ // toto je pole objektů UserRecord, každý objekt má vlastnosti name a answer
-        { name: "Hana", answer: "no" as const },
-        { name: "Daniela", answer: "yes" as const },
+        { name: "Hana", answer: "no" },
+        { name: "Daniela", answer: "yes" },
       ],
     },
     {
       timestamp: new Date("2025-07-29").getTime(),
       records: [
-        { name: "Pavel", answer: "if-needed" as const },
-        { name: "Hana", answer: "yes" as const },
+        { name: "Pavel", answer: "if-needed" },
+        { name: "Hana", answer: "yes" },
       ],
     },
   ],

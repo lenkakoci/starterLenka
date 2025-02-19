@@ -1,5 +1,5 @@
 import React from "react";
-import "./stylesEvent.css";
+import "./styles.css";
 import { EventTable } from "../EventTable/EventTable";
 
 export type UserRecord = {
@@ -23,7 +23,7 @@ export const Event: React.FC<EventProps> = ({ location, id, title, dates }) => {
     <div className="event-container">
       <h1 className="event-title">{title}</h1>
       <p>ID akce: {id}</p>
-      <h2 className="event-location">Místo: {location}</h2>
+      {location ? <h2 className="event-location">Místo: {location}</h2> : null}
       <EventTable dates={dates} />
     </div>
   );
