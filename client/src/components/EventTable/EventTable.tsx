@@ -1,17 +1,10 @@
 import React from "react";
 import "./styles.css";
-import { DateRecord } from "../Event/Event";
+import { DateRecord } from "../../types";
 
 export const EventTable: React.FC<{ dates: DateRecord[] }> = ({ dates }) => {
   const allUsers = dates.flatMap((date) => date.records.map((r) => r.name));
-  // const allUsers = Array.from(
-  // new Set(dates.flatMap((date) => date.records.map((r) => r.name)))
-  // předchozí řádek udělá pomocí flatMap z pole polí jedno pole
-  // Pro každý date v dates získáme date.records.map((r) => r.name), což vytvoří pole jmen uživatelů pro dané datum.
-  // flatMap zajistí, že všechna jména ze všech date.records budou v jednom velkém poli.
-  // pomocí new Set zůstanou jen unikátní hodnoty
-  // pomocí Array.from se ze setu získá zpět pole prodalší práci
-  // );
+
   // v prvním řádku tabulky, hlavičce, za Jméno přijdou jednotlivá data
   return (
     <table className="event-table">
