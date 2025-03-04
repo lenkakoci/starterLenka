@@ -9,17 +9,18 @@ import { Navigation } from "../../components/Navigation/Navigation";
 import { Pocasi } from "../../components/Weather/GetWeather";
 
 export const EventDetail: React.FC = () => {
-  const [item, setItem] = React.useState<PollingEvent | undefined>();
+  const [item, setItem] = useState<PollingEvent>();
   const { id } = useParams(); // V React Router je useParams() hook, který umožňuje získat parametry z URL
 
-  const [tempEffect, setTempEffect] = useState<string | null>(null);
+  const [tempEffect, setTempEffect] = useState<string>();
+
   const [tempHook, setTempHook] = useState<string | null>(null);
 
   React.useEffect(() => {
     if (id) {
       setItem(getDataById(id));
     }
-  }, [id]);
+  });
 
   return (
     <>
@@ -36,10 +37,10 @@ export const EventDetail: React.FC = () => {
             <h4 className="av2">Průměrná teplota s použitím hooku je:</h4>
             {item.location && <Weather location={item.location} onTemperatureChange={setTempHook} />}
             {/* VAROVÁNÍ PŘI ROZDÍLNÝCH HODNOTÁCH */}
-            {tempEffect !== null && tempHook !== null && tempEffect !== tempHook && (
+            {tempEffect && tempHook && tempEffect !== tempHook && (
               <span className="warning">⚠ Jak je to možné? Hodnoty teplot se liší!</span>
             )}
-            {tempEffect !== null && tempHook !== null && tempEffect === tempHook && (
+            {tempEffect && tempHook && tempEffect === tempHook && (
               <span className="statement">V pořádku. Hodnoty teplot se shodují.</span>
             )}
 
