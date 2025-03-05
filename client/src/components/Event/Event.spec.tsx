@@ -1,14 +1,15 @@
 import { render } from "@testing-library/react";
-import { Event, EventProps } from "./Event";
+import { Event } from "./Event";
 import { EventPageObject } from "./Event.pageObject";
+import { PollingEvent } from "../../types";
 
 describe("Event component", () => {
-  const baseProps: EventProps = {
+  const baseProps: PollingEvent = {
     dates: [{
       timestamp: new Date("2025-7-27").getTime(),
       records: [ // toto je pole objektů UserRecord, každý objekt má vlastnosti name a answer
-        { name: "Pavel", answer: "yes" as const }, // as const zařídí, že se nejedná o string ale jednu z předdefinovaných hodnot
-        { name: "Lukáš", answer: "no" as const },
+        { name: "Pavel", answer: "ano" as const }, // as const zařídí, že se nejedná o string ale jednu z předdefinovaných hodnot
+        { name: "Lukáš", answer: "ne" as const },
       ],
     }], id: "event-1", location: "Matterhorn",
     title: "Výstup na Matterhorn"
