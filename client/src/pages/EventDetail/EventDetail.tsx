@@ -1,32 +1,33 @@
-import React, { useState } from "react";
-import { PollingEvent } from "../../types";
+import React, { useState, useEffect } from "react";
+// import { PollingEvent } from "../../types";
 import "./styles.css";
-import { getDataById } from "../../eventData";
+// import { getDataById } from "../../eventData";
 import { useParams } from "react-router";
 import { Weather } from "../../components/Weather/Weather";
 import { Event } from "../../components/Event/Event";
 import { Navigation } from "../../components/Navigation/Navigation";
 import { Pocasi } from "../../components/Weather/GetWeather";
+import { useFetchEvent } from "./useFetchEvent";
 
 export const EventDetail: React.FC = () => {
-  const [item, setItem] = useState<PollingEvent>();
   const { id } = useParams(); // V React Router je useParams() hook, který umožňuje získat parametry z URL
 
   const [tempEffect, setTempEffect] = useState<string>();
 
   const [tempHook, setTempHook] = useState<string | null>(null);
 
-  React.useEffect(() => {
-    if (id) {
-      setItem(getDataById(id));
-    }
-  });
+  const { fetchEvents, isLoading, error, data: item } = useFetchEvent(id as string);
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   return (
     <>
       <Navigation />
       <div className="event">
         {!item && `Událost s ID ${id} neexistuje.`}
+        {error ? error : ""}
+        {isLoading ? "Loading..." : ""}
         {item && (
           <>
             <h2 className="loc">{item.location}</h2>

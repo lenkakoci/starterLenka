@@ -6,7 +6,7 @@ import { EventDetail } from "./pages/EventDetail/EventDetail";
 import { NovaAkceFormik } from "./pages/NovaAkceFormik/NovaAkceFormik";
 // import { Navigation } from "./components/Navigation/Navigation";
 import { Route, BrowserRouter, Routes } from "react-router";
-import { data } from "./eventData";
+// import { data } from "./eventData";
 
 const App: React.FC = () => {
   return (
@@ -15,8 +15,8 @@ const App: React.FC = () => {
 
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Events data={data} />} />
-          <Route path="/events" element={<Events data={data} />} />
+          <Route path="/" element={<Events />} />
+          <Route path="/events" element={<Events />} />
           <Route path="/events/:id" element={<EventDetail />} />
           <Route path="/formik" element={<NovaAkceFormik />} />
         </Routes>

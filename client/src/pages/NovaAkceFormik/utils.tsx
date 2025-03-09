@@ -1,34 +1,28 @@
-export type FormValues = {
-  title: string;
-  misto?: string;
-  dates: string[];
-};
-export const handleSubmit = async (values: FormValues) => {
-  const requestBody: Record<string, string | null | string[] | number[]> = {
+import { useNavigate } from "react-router-dom";
 
-    title: values.title,
-    dates: values.dates.map((date: string) => new Date(date).getTime()),
-  };
+export const useForm = () => {
+  const navigate = useNavigate();
 
-  if (values.misto) {
-    requestBody.location = values.misto; // 🔹 Přidáme misto jen pokud je vyplněné
-  }
+  const submitForm = async (values: Record<string, string | number | string[]>) => {
+    try {
+      const response = await fetch("http://localhost:4000/api/events", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+      if (response.ok) {
+        navigate("/events");
+      }
+      if (!response.ok) {
+        throw new Error("Chyba při odesílání akce.");
+      }
 
-  try {
-    const response = await fetch("/api/events", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
-    });
-
-    if (!response.ok) {
-      throw new Error("Chyba při odesílání akce.");
+      // alert("Akce byla úspěšně přidána!");
+    } catch (error) {
+      alert("Nastala chyba: " + error.message);
     }
-
-    alert("Akce byla úspěšně přidána!");
-  } catch (error) {
-    alert("Nastala chyba: " + error.message);
-  }
+  };
+  return { submitForm };
 };

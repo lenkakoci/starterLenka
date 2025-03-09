@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { Navigation } from "../../components/Navigation/Navigation";
 import "./styles.css";
-import { handleSubmit } from "./utils";
+import { useForm } from "./utils";
 
 export const NovaAkceFormik: React.FC = () => {
   const [dates, setDates] = useState<string[]>([""]);
+  const { submitForm } = useForm();
   const maxDates = 10;
 
   return (
@@ -30,7 +31,10 @@ export const NovaAkceFormik: React.FC = () => {
             }
             return errors;
           }}
-          onSubmit={handleSubmit}
+          onSubmit={(values) => {
+            submitForm(values);
+          }}
+
         >
           {({ isSubmitting, errors, isValid, values }) => (
             <Form>

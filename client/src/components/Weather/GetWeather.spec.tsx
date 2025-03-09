@@ -11,7 +11,7 @@ describe("GetWeather component", () => {
   const renderComponent = (props = baseProps) => {
     return new GetWeatherPageObject(render(<Pocasi {...props} />));
   };
-  let getCityCoordsMock: jest.SpyInstance;
+  // let getCityCoordsMock: jest.SpyInstance;
   let getForecastMock: jest.SpyInstance;
 
   beforeEach(() => {
@@ -24,7 +24,7 @@ describe("GetWeather component", () => {
   });
 
   afterEach(() => {
-    getCityCoordsMock?.mockRestore();
+    // getCityCoordsMock?.mockRestore();
     getForecastMock?.mockRestore();
   });
 
