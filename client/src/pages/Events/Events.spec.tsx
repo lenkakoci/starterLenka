@@ -2,10 +2,11 @@ import { render } from "@testing-library/react";
 import { Events } from "./Events";
 import { EventsPageObject } from "./Events.pageObject";
 import * as getEventsUtils from "./useFetchEvents";
+import { BrowserRouter } from "react-router";
 
 describe("Events component", () => {
   const renderComponent = () => {
-    return new EventsPageObject(render(<Events />));
+    return new EventsPageObject(render(<BrowserRouter><Events /></BrowserRouter>));
   };
 
   let getEventsMock: jest.SpyInstance;

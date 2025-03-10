@@ -1,4 +1,29 @@
-export const dataUdalosti = {
+// Typ pro jednotlivou odpověď účastníka
+type RecordEntry = {
+  name: string;
+  answer: 'yes' | 'no' | 'if-needed';
+};
+
+// Typ pro datum s odpověďmi
+type EventDate = {
+  timestamp: number;
+  records: RecordEntry[];
+};
+
+// Typ pro jednotlivou událost
+type EventItem = {
+  id: number;
+  location: string;
+  title: string;
+  dates: EventDate[];
+};
+
+// Typ pro hlavní objekt
+type EventsData = {
+  items: EventItem[];
+};
+
+export const dataUdalosti: EventsData = {
   items: [
     {
       id: 1,
