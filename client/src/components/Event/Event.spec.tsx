@@ -21,11 +21,11 @@ describe("Event component", () => {
 
   it("should render Výstup na Matterhorn", async () => {
     const event = renderComponent();
-    await event.assertName(baseProps.title);
+    await event.assertTitle(baseProps.title);
   });
 
   it("should render test title", async () => {
     const event = renderComponent({ dates: [], id: "", location: "", title: "test title" });
-    await event.assertName("test title");
+    await event.assertTitle("test title");
   });
 });
