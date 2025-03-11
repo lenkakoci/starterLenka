@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { dataUdalosti } from './dataUdalosti';
 
 const router = Router();
-let idCounter = 2;
+let idCounter = 3;
 const data = dataUdalosti;
 
 router.post('/events', (req, res) => {
