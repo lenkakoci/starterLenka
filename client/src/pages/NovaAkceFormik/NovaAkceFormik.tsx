@@ -17,7 +17,7 @@ export const NovaAkceFormik: React.FC = () => {
         <Formik
           initialValues={{
             title: "",
-            misto: "",
+            location: "",
             dates: [""],
           }}
           validate={(values) => {
