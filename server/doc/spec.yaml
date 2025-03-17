@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: API for managing events and their details.
 paths:
-  /events:
+  /api/events:
     get:
       summary: Get all events
       description: Retrieve a list of all events.
@@ -24,6 +24,8 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - items
                 properties:
                   items:
                     type: array
@@ -50,7 +52,7 @@ paths:
         '500':
           description: Internal server error
 
-  /events/{id}:
+  /api/events/{id}:
     get:
       summary: Get event by ID
       description: Retrieve a specific event by its ID.
@@ -103,6 +105,10 @@ components:
           description: Records for this date.
     EventItem:
       type: object
+      required:
+        - title
+        - dates
+        - id
       properties:
         id:
           type: integer
@@ -120,6 +126,9 @@ components:
           description: Dates and associated records for the event.
     EventItemInput:
       type: object
+      required:
+        - title
+        - dates
       properties:
         location:
           type: string
