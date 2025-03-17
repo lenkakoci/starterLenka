@@ -1,0 +1,55 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Swagger UI</title>
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:300,600|Titillium+Web:400,600,700" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.24.2/swagger-ui.css" >
+            <style>
+                html {
+                    box-sizing: border-box;
+                    overflow: -moz-scrollbars-vertical;
+                    overflow-y: scroll;
+                }
+                *,
+                *:before,
+                *:after {
+                    box-sizing: inherit;
+                }
+                body {
+                    margin:0;
+                    background: #fafafa;
+                }
+                .swagger-ui .parameters-col_description input[type=text]{
+                    width: 50vw ;
+                    max-width: 50vw !important;
+                }
+            </style>
+        </head>
+        <body>
+            <div id="swagger-ui"></div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.24.2/swagger-ui-bundle.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.24.2/swagger-ui-standalone-preset.js"></script>
+            <script>
+                window.onload = function() {
+                    var spec = {"openapi":"3.0.0","info":{"title":"Event Management API","version":"1.0.0","description":"API for managing events and their details."},"paths":{"/events":{"get":{"summary":"Get all events","description":"Retrieve a list of all events.","tags":["Events"],"responses":{"200":{"description":"Successful operation","content":{"application/json":{"schema":{"type":"object","properties":{"items":{"type":"array","items":{"$ref":"#/components/schemas/EventItem"}}}}}}},"500":{"description":"Internal server error"}}},"post":{"summary":"Create a new event","description":"Add a new event to the system.","tags":["Events"],"requestBody":{"description":"Event object that needs to be added","required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/EventItemInput"}}}},"responses":{"200":{"description":"Successful operation"},"500":{"description":"Internal server error"}}}},"/events/{id}":{"get":{"summary":"Get event by ID","description":"Retrieve a specific event by its ID.","tags":["Events"],"parameters":[{"in":"path","name":"id","schema":{"type":"integer"},"required":true,"description":"ID of the event to retrieve"}],"responses":{"200":{"description":"Successful operation","content":{"application/json":{"schema":{"$ref":"#/components/schemas/EventItem"}}}},"404":{"description":"Event not found"},"500":{"description":"Internal server error"}}}}},"components":{"schemas":{"RecordEntry":{"type":"object","properties":{"name":{"type":"string","description":"Name of the participant."},"answer":{"type":"string","enum":["yes","no","if-needed"],"description":"Participant's answer."}}},"EventDate":{"type":"object","properties":{"timestamp":{"type":"integer","description":"Timestamp of the date."},"records":{"type":"array","items":{"$ref":"#/components/schemas/RecordEntry"},"description":"Records for this date."}}},"EventItem":{"type":"object","properties":{"id":{"type":"integer","description":"Unique identifier for the event."},"location":{"type":"string","description":"Location of the event."},"title":{"type":"string","description":"Title of the event."},"dates":{"type":"array","items":{"$ref":"#/components/schemas/EventDate"},"description":"Dates and associated records for the event."}}},"EventItemInput":{"type":"object","properties":{"location":{"type":"string","description":"Location of the event."},"title":{"type":"string","description":"Title of the event."},"dates":{"type":"array","items":{"$ref":"#/components/schemas/EventDate"},"description":"Dates and associated records for the event."}}}}}};
+                    const ui = SwaggerUIBundle({
+                        spec: spec,
+                        dom_id: '#swagger-ui',
+                        deepLinking: true,
+                        presets: [
+                            SwaggerUIBundle.presets.apis,
+                            SwaggerUIStandalonePreset
+                        ],
+                        plugins: [
+                            SwaggerUIBundle.plugins.DownloadUrl
+                        ],
+                        layout: "StandaloneLayout"
+                    });
+                    window.ui = ui;
+                }
+            </script>
+        </body>
+    </html>
+    

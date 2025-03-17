@@ -14,7 +14,12 @@ router.post('/events', (req, res) => {
   });
   res.send('OK');
 });
-router.get('/events', (_req, res) => {
+router.get('/events', (req, res) => {
+  const limit = req.query.limit ? parseInt(req.query.limit.toString(), 10) : 10;
+  if (limit) {
+    res.json({ items: data.items.slice(0, limit) });
+    return;
+  }
   res.json(data);
 });
 

@@ -17,7 +17,7 @@ export const NovaAkceFormik: React.FC = () => {
         <Formik
           initialValues={{
             title: "",
-            misto: "",
+            location: "",
             dates: [""],
           }}
           validate={(values) => {
@@ -44,8 +44,8 @@ export const NovaAkceFormik: React.FC = () => {
                 {errors.title && <div style={{ color: "red" }}>{errors.title}</div>}
               </div>
               <div>
-                <label htmlFor="misto">Místo akce: </label>
-                <Field name="misto" placeholder="Místo akce" />
+                <label htmlFor="location">Místo akce: </label>
+                <Field name="location" placeholder="Místo akce" />
 
               </div>
               <div>

@@ -7,7 +7,9 @@
     "lint:fix": "eslint . --fix",
     "build": "tsc -p .",
     "start": "node dist/index.js",
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "generate-doc": "node createDocs.js",
+    "generate-client": "npx openapi-typescript doc/spec.yaml -o ../client/src/apischema.d.ts"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +32,10 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^5.0.0"
+    "express": "^5.0.0",
+    "openapi-fetch": "^0.13.4",
+    "openapi-typescript": "^7.6.1",
+    "openapi2html": "^2.0.1",
+    "swagger-yaml-to-html": "^1.0.3"
   }
 }
